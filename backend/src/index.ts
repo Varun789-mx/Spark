@@ -1,10 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 import express from "express";
 import { basePrompt } from "./prompts/Baseprompt";
-import { nextjsPrompt } from "./defaults/nextjs";
-import { nodePrompt } from "./defaults/node";
-import { Reactprompt } from "./defaults/react";
-import { expressPrompt } from "./defaults/expressjs";
+import { nextjsPrompt } from "./prompts/nextjs";
+import { nodePrompt } from "./prompts/node";
+import { Reactprompt } from "./prompts/react";
+import { expressPrompt } from "./prompts/expressjs";
 import dotenv, { config } from "dotenv";
 dotenv.config();
 
