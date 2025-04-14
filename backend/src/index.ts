@@ -82,6 +82,33 @@ app.post('/template', async (req, res) => {
   }
 })
 
+
+app.post('/chat', async (req, res) => {
+  const message: string = req.body.message;
+  try {
+
+    const result = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: [{
+        role: "user",
+        parts: [{ text: message }]
+      }],
+      config: {
+        temperature: 1,
+        maxOutputTokens: 58000,
+        systemInstruction: basePrompt+Reactprompt,
+      }
+    });
+    console.log(result.text);
+    res.json({
+      result: result.text,
+    })
+  }
+
+  catch (error) {
+    res.status(404).json({ error: error instanceof Error ? error.message : "Unknown" })
+  }
+})
 app.listen(port, () => {
-  console.log(`Server started on http://localhost:${port}/template`);
+  console.log(`Server started on http://localhost:${port}/template \n http://localhost:${port}/chat `);
 })  
