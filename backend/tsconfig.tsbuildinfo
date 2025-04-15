@@ -1,1 +1,1 @@
-{"root":["./src/inde.ts","./src/index.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/llm.ts","./src/defaults/expressjs.ts","./src/defaults/nextjs.ts","./src/defaults/node.ts","./src/defaults/react.ts","./src/prompts/baseprompt.ts"],"version":"5.8.3"}
