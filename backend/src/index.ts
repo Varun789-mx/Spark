@@ -50,14 +50,16 @@ app.post('/template', async (req, res) => {
     }
     if (responseText == "React") {
       res.json({
-        prompt: [basePrompt, Reactprompt],
+        prompt: [basePrompt, `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${Reactprompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`],
+        uiprompt: Reactprompt,
       })
       return;
     }
 
     if (responseText == "node") {
       res.json({
-        prompt: [basePrompt, nodePrompt],
+        prompt: [basePrompt, `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${nodePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`],
+        uiprompt: nodePrompt,
       })
       return;
 
@@ -65,14 +67,16 @@ app.post('/template', async (req, res) => {
 
     if (responseText == "express") {
       res.json({
-        prompt: [basePrompt, expressPrompt],
+        prompt: [basePrompt, `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${expressPrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`],
+        uiprompt: expressPrompt,
       })
       return;
     }
 
     if (responseText == "nextjs") {
       res.json({
-        prompt: [basePrompt, nextjsPrompt]
+        prompt: [basePrompt, `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${nextjsPrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`],
+        uiprompt: nextjsPrompt,
       })
       return;
     }
@@ -84,19 +88,18 @@ app.post('/template', async (req, res) => {
 
 
 app.post('/chat', async (req, res) => {
-  const message: string = req.body.message;
+  const prompt: string = req.body.prompt;
   try {
-
     const result = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: [{
         role: "user",
-        parts: [{ text: message }]
+        parts: [{ text: prompt }]
       }],
       config: {
         temperature: 1,
-        maxOutputTokens: 58000,
-        systemInstruction: basePrompt+Reactprompt,
+        maxOutputTokens: 8000,
+        systemInstruction: basePrompt + Reactprompt,
       }
     });
     console.log(result.text);
@@ -104,7 +107,6 @@ app.post('/chat', async (req, res) => {
       result: result.text,
     })
   }
-
   catch (error) {
     res.status(404).json({ error: error instanceof Error ? error.message : "Unknown" })
   }
