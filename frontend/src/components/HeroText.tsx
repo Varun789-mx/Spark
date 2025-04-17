@@ -15,7 +15,6 @@ export const HeroText = () => {
             Get the best advices from our experts, including expert artists,
             painters, marathon enthusiasts and RDX, totally free.
           </p>
-        
           </div>
             <InputBox />
       </div>

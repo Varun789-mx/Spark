@@ -1,5 +1,6 @@
 import './App.css';
-import { HeroText } from './components/HeroText';
+import { Background } from './components/Backgroun';
+import { Navbar } from './components/Navbar';
 
 import { Spotlight } from './components/Spotlight-new';
 
@@ -7,14 +8,10 @@ function App() {
   console.log(<Spotlight />)
   return (
     <>
-      <div className="relative min-h-screen bg-black min-w-screen overflow-hidden">
-        <Spotlight />
-        <div className="absolute flex justify-center">
-          <HeroText />
-        </div>
-      </div>
+    <Navbar/>
+    <Background/>
     </>
-  );
+  )
 }
 
 export default App;
