@@ -9,8 +9,8 @@ function App() {
     <>
       <div className="relative min-h-screen bg-black min-w-screen overflow-hidden">
         <Spotlight />
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          {/* <HeroText /> */}
+        <div className="absolute inset-0 flex flex-col pt-5 justify-center">
+          <HeroText />
 
         </div>
       </div>

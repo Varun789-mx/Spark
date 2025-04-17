@@ -6,10 +6,10 @@ export const HeroText = () => {
 
   return (
     <>
-      <div className='min-w-screen min-h-screen bg-transparent  flex justify-center items-center'>
-        <div className='text-white font-serif'>
-          <span className='text-4xl'>Prompt , build ,Ship in minutes</span>
-          <div className="pl-4">
+      <div className='min-w-screen min-h-screen bg-transparent  flex flex-col justify-center items-center'>
+        <div className='text-white font-serif '>
+          <span className='text-6xl'>Prompt , build ,Ship in minutes</span>
+          <div className="">
             <span className='text-xl text-red-400'>   Build you favourite Apps for
             </span>
             <span className='text-xl text-white'> Mobile</span>
