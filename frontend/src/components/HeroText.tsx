@@ -1,23 +1,29 @@
-import { InputBox } from "./Inputbox"
-
-
 export const HeroText = () => {
-
-
   return (
     <>
-      <div className='min-w-screen min-h-screen bg-transparent  flex flex-col items-center'>
-        <div className="flex-col justify-center items-center">
-          <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
-            Spark It up, <br /> Build your MVP in minutes
-          </h2>
-          <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
-            Get the best advices from our experts, including expert artists,
-            painters, marathon enthusiasts and RDX, totally free.
-          </p>
+      <div className="flex justify-center p-3 h-2/3  items-center">
+        <div className="w-2/3  flex flex-col items-center text-center">
+          <div className="">
+            <span className="text-violet-500 font-bold text-6xl ">
+              Build Better Apps <span className="text-white"> with AI-Powered Development</span>
+            </span>
           </div>
-            <InputBox />
-      </div>
+          <div className="pt-5 w-full max-w-xl text-xl text-center  text-blue-400 p-2">
+            <span className="w-full">
+              Transform your ideas into production-ready web applications with our AI-powered developer platform. No complex setup, just pure creativity.
+            </span>
+            <div className="flex justify-evenly pr-5 m-3 p-2 text-white text-lg ">
+            <div className="bg-blue-500 hover:bg-blue-600 cursor-pointer w-50 p-2 rounded-sm focus-within:bg-blue-600">
+              Start Building Free
+            </div>
+            </div>
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div >
     </>
   )
+
 }

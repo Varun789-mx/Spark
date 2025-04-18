@@ -1,10 +1,10 @@
-import Spark from "../../public/SparkAi logo.png"
+import Spark from "../public/SparkAI logo.png"
 export const Navbar = () => {
     return <>
         <div className="bg-[#121728] w-full h-16 flex justify-between pt-2">
             <div className="text-white  flex justify-between items-center p-2">
                 <div className="pl-9 flex items-center p-2">
-                    <img className=" h-40 w-auto object-contain" src={Spark} alt="logo"/>
+                    <img className=" h-40 w-auto object-contain" src={Spark} alt="logo" />
                 </div>
                 <div className="flex justify-between text-base text-blue-400 cursor-pointer ">
                     <div >
