@@ -1,7 +1,7 @@
 export const HeroText = () => {
   return (
     <>
-      <div className="flex justify-center p-3 h-2/3  items-center">
+      <div className="flex justify-center p-3 h-3/4  items-center">
         <div className="w-2/3  flex flex-col items-center text-center">
           <div className="">
             <span className="text-violet-500 font-bold text-6xl ">
