@@ -23,7 +23,7 @@ export const Navbar = () => {
             </div>
 
             <div className="text-white flex justify-between pr-9 cursor-pointer pt-2">
-                <div className="text-base px-2 pt-2">
+                <div className="text-base px-2 pt-2 ">
                     <span className="p-4">Login</span>
                 </div>
                 <div>
