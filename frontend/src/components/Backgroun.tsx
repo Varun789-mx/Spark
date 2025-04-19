@@ -8,7 +8,7 @@ export const Background = () => {
                 backgroundSize: '20px 20px',
                 width: '100%',
                 height: '100vh'
-            }}>
+            }} className=" ">
                 {/* Your content here */}
             </div>
         </>

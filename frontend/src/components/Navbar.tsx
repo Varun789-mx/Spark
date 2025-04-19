@@ -1,7 +1,7 @@
 import Spark from "../public/SparkAI logo.png"
 export const Navbar = () => {
     return <>
-        <div className="bg-[#121728] w-full h-16 flex justify-between pt-2">
+        <header className=" fixed top-0 left-0 backdrop-blur-lg right-0 bg-background/80 border-b border-b-border z-50  w-full h-16 flex justify-between pt-2 ">
             <div className="text-white  flex justify-between items-center p-2">
                 <div className="pl-9 flex items-center p-2">
                     <img className=" h-40 w-auto object-contain" src={Spark} alt="logo" />
@@ -35,7 +35,7 @@ export const Navbar = () => {
             </div>
 
 
-        </div>
+        </header>
     </>
 
 }
