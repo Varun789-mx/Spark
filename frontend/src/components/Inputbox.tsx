@@ -1,16 +1,34 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export const InputBox = () => {
+  const [prompt, setprompt] = useState("");
+  const Navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (prompt.trim()) {
+      Navigate(`/builder`, { state: { prompt } });
+    }
+    else {
+      alert("Please provide a valide prompt");
+    }
+  }
+
   return (
-    <div className="w-full max-w-md px-4 mt-6 bg-grey-500">
-      <textarea
-        className="flex min-h-[80px] w-full rounded-md border 
-                border-input bg-transparent px-3 py-2 
-                text-base shadow-sm placeholder:text-grey-200/50
-                focus-visible:outline-none focus-visible:ring-1 
-                focus-visible:ring-ring disabled:cursor-not-allowed 
-                disabled:opacity-50 md:text-sm"
-       
-        placeholder="What are we building today, chief?"
-      />
-    </div>
-  );
+    <>
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="bg-gray-800 rounded-lg shadow-lg p-6" >
+            <textarea value={prompt} onChange={(e) => setprompt(e.target.value)} placeholder="Describe the project you want to build.. "
+              className="w-full h-32 p-4 bg-gray-900 text-gray-100 border
+                 border-gray-700 rounded-lg focus:ring-2
+                  focus:ring-blue-500 focus:border-transparent resize-none placeholder-gray-500" />
+            <button type="submit" className="w-full mt-4 bg-blue-400 text-gray-100 py-3 px-6 rounded-lg font-medium hover:bg-blue-700  transition-colors">
+              Generate your Project</button>
+          </div>
+        </form>
+      </div>
+    </>
+  )
 };
