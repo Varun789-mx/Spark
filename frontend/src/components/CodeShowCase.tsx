@@ -5,7 +5,7 @@ const CodeShowcase = () => {
     <div>
       <section id="how-it-works" className="py-20 bg-secondary/5">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16 text-center">
+          <div className=" max-w-3xl mx-auto mb-16 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500">
               <span className="text-gradient">Code that Writes Itself</span>
             </h2>
