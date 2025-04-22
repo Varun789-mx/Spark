@@ -1,5 +1,7 @@
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config";
 
 export const InputBox = () => {
   const [prompt, setprompt] = useState("");
@@ -9,12 +11,17 @@ export const InputBox = () => {
     e.preventDefault();
     if (prompt.trim()) {
       Navigate(`/builder`, { state: { prompt } });
+      axios.post(`${BACKEND_URL}/chat`, {
+        prompt: prompt,
+      }).then((res) => {
+        console.log(res.data);
+      }).catch(error=> console.log(error))
+      
     }
     else {
       alert("Please provide a valide prompt");
     }
   }
-
   return (
     <>
       <div className=" flex items-center justify-center p-4">

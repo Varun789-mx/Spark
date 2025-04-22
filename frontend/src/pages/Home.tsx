@@ -1,4 +1,5 @@
 import { Background } from "../components/Background"
+import CodeShowcase from "../components/CodeShowCase"
 import { HeroText } from "../components/HeroText"
 import { Navbar } from "../components/Navbar"
 
@@ -16,8 +17,10 @@ export const Home = () => {
         
         <div className="flex-1 flex flex-col  justify-center items-center px-4">
           <HeroText />
+   
         </div>
       </div>
+      <CodeShowcase/>
       </div>
       </div>
 
