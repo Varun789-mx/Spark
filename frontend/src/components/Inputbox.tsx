@@ -17,9 +17,9 @@ export const InputBox = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className=" flex items-center justify-center p-4">
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="bg-gray-800 rounded-lg shadow-lg p-6" >
+          <div className="bg-gray-800 rounded-lg shadow-lg p-6 " >
             <textarea value={prompt} onChange={(e) => setprompt(e.target.value)} placeholder="Describe the project you want to build.. "
               className="w-full h-32 p-4 bg-gray-900 text-gray-100 border
                  border-gray-700 rounded-lg focus:ring-2
