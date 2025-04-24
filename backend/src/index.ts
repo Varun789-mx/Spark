@@ -5,6 +5,7 @@ import { nextjsPrompt } from "./prompts/nextjs";
 import { nodePrompt } from "./prompts/node";
 import { Reactprompt } from "./prompts/react";
 import { expressPrompt } from "./prompts/expressjs";
+import cors from "cors";
 import dotenv, { config } from "dotenv";
 dotenv.config();
 
@@ -14,6 +15,7 @@ type AllowedResponse = "React" | "express" | "nextjs" | "node";
 const port = process.env.PORT || 4000;
 
 app.use(express.json())
+app.use(cors());
 
 const token = process.env.GEMINI_API;
 if (!token) {
