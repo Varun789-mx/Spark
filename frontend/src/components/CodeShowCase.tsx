@@ -2,14 +2,14 @@
 
 const CodeShowcase = () => {
   return (
-    <div>
+    <div className="">
       <section id="how-it-works" className="py-20 bg-secondary/5">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-gradient">Code that Writes Itself</span>
+              <span className="text-blue-400">Code that Writes Itself</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-blue-400">
               Simply describe what you want, and watch as DevForge AI generates
               high-quality code in real-time.
             </p>
@@ -172,7 +172,7 @@ const CodeShowcase = () => {
               </div>
             </div>
 
-            <div className="order-1 md:order-2">
+            <div className="order-1 md:order-2 text-blue-400">
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold">
                   Just Describe What You Need
