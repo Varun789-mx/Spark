@@ -14,7 +14,7 @@ loader.init().then((monaco) => {
 function CodeEditor() {
  
   return (
-    <div > 
+    <div  className='w-full'> 
       {" "}
       <Editor  
         height="90vh"

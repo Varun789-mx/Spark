@@ -1,5 +1,6 @@
 import { Background } from "../components/Background";
 import { Chatbox } from "../components/Chatabox";
+import CodeEditor from "../components/CodeEditor";
 import { Navbar } from "../components/Navbar";
 import { ResponseDisplay } from "../components/ResponseDisplay";
 
@@ -13,16 +14,12 @@ export function Builder() {
             </div> 
             <div className="relative -z-10 flex flex-col ">
                 <Navbar />
-            </div>
-            <div className=" w-full flex justify-evenly">
-                <div className="top-1/5 right-8 flex-1 items-center" >
-                    <ResponseDisplay />
-                </div>
-                <div className="w-full flex justify-center ">
+   
+<div className="w-full h-screen pt-5">
                     <div className="absolute top-3/4  left-8 flex-1 items-center ">
                         <Chatbox />
                     </div>
-                </div>
+             </div>
             </div>
         </div>
     )
