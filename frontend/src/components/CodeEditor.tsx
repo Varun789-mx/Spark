@@ -1,33 +1,73 @@
-  import Editor, { loader } from '@monaco-editor/react';
-  import { FileExplorer } from './FileExplorer';
+import Editor, { loader } from '@monaco-editor/react';
+import { FileExplorer } from './FileExplorer';
+import type { FileItem } from './types';
+import { useState } from 'react';
 
-  loader.init().then((monaco) => {
-      monaco.editor.defineTheme('myTheme', {
-          base: 'vs-dark',
-          inherit: true,
-          rules: [],
-          colors: {
-              'editor.background': '#0d1117',
-          },
-      });
+loader.init().then((monaco) => {
+  monaco.editor.defineTheme('myTheme', {
+    base: 'vs-dark',
+    inherit: true,
+    rules: [],
+    colors: {
+      'editor.background': '#0d1117',
+    },
   });
-  function CodeEditor() {
-  
+});
 
 
-    return (
-      <div  className='w-2/3  '> 
-        {" "}
-       
-        <Editor  
-          height="90vh"
-          theme="myTheme"
-          defaultLanguage="javascript"
-          defaultValue="// some comment"
-        />
-        ;
-      </div>
-    );
-  }
+const sampleFiles: FileItem[] = [
+  {
+    name: "src",
+    path: "/src",
+    type: "Folder",
+    children: [
+      {
+        name: "App.tsx",
+        path: "/src/App.tsx",
+        type: "File",
+      },
+      {
+        name: "components",
+        path: "/src/components",
+        type: "Folder",
+        children: [
+          {
+            name: "Header.tsx",
+            path: "/src/components/Header.tsx",
+            type: "File",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "package.json",
+    path: "/package.json",
+    type: "File",
+  },
+];
 
-  export default CodeEditor;
+function CodeEditor() {
+  const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
+
+  const handleFileSelect = (file: FileItem) => {
+    setSelectedFile(file);
+    console.log("Selected file:", file);
+  };
+  return (
+    <div className='w-full flex justify-center bg-black '>
+      {" "}
+      
+      <FileExplorer files={sampleFiles} onFileSelect={handleFileSelect} />
+      <Editor
+        height="87vh"
+        theme="myTheme"
+        defaultLanguage="javascript"
+        defaultValue="// some comment"
+      />
+      ;
+    </div>
+  );
+}
+
+export default CodeEditor;
