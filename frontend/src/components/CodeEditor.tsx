@@ -55,17 +55,25 @@ function CodeEditor() {
     console.log("Selected file:", file);
   };
   return (
-    <div className='w-full flex justify-center bg-black '>
-      {" "}
-      
-      <FileExplorer files={sampleFiles} onFileSelect={handleFileSelect} />
-      <Editor
-        height="87vh"
-        theme="myTheme"
-        defaultLanguage="javascript"
-        defaultValue="// some comment"
-      />
-      ;
+    <div>
+      <div>
+        <div className=''>
+        <button className='text-gray-500 font-semibold bg-black rounded-lg p-1 text-sm focus:bg-gray-800'>Code</button>
+        <button className='text-gray-500 bg-black font-semibold rounded-xl p-1 text-sm focus:bg-gray-800'>preview</button>
+      </div>
+      </div>
+      <div className='w-full flex justify-center bg-black '>
+        {" "}
+
+        <FileExplorer files={sampleFiles} onFileSelect={handleFileSelect} />
+        <Editor
+          height="87vh"
+          theme="myTheme"
+          defaultLanguage="javascript"
+          defaultValue="// some comment"
+        />
+        ;
+      </div>
     </div>
   );
 }

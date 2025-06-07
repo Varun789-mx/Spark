@@ -17,9 +17,9 @@ export function Builder() {
                 <div className="absolute  w-1/3 top-3/4 flex-1 items-center p-2 ">
                     <Chatbox />
                 </div>
-               <div className="absolute top-16 right-0 w-3/5 p-2">
-    <CodeEditor />
-</div>
+                <div className="absolute top-16 right-0 w-3/5 p-2">
+                    <CodeEditor />
+                </div>
             </div>
         </div>
     )
