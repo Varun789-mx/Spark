@@ -27,7 +27,7 @@ export interface Step {
     code?: string;
     path?: string
 }
-export interface FileViewerprop { 
-    File:FileItem | null;
-    onclose:() => void;
+export interface FileViewerprop {
+    File: FileItem | null;
+    onclose: () => void;
 }

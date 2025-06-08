@@ -28,7 +28,7 @@ export function Editor() {
       <div className='w-full flex justify-center bg-black rounded-lg border-2'>
         {" "}
         <div className='w-1/3'>
-          <FileExplorer files={null} onFileSelect={handleFileSelect} />
+          <FileExplorer files={[]} onFileSelect={handleFileSelect} />
         </div>
         <div className='w-full'>
           {isPressed ?
