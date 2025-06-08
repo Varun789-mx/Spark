@@ -1,7 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Chatbox } from "../components/Chatabox";
 import { Background } from "../components/Background";
-import CodeEditor from "../components/CodeEditor";
+import CodeEditor from "../components/Editor";
 
 
 export function Builder() {
