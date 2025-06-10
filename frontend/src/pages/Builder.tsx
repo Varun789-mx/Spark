@@ -54,7 +54,7 @@ export function Builder() {
         <Navbar />
       </div>
       <div className="flex w-full justify-items-center px-6 m-2">
-        <div className="absolute w-1/3 top-3/4 flex-1 flex-col items-center p-2">
+        <div className="absolute w-1/3 mt-8 flex-1 flex-col items-center p-2">
           <Steplist
             step={steps}
             currentstep={currentStep}
