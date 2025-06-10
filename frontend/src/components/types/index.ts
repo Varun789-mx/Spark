@@ -6,10 +6,6 @@ export interface FileItem {
     path: string;
 }
 export enum StepType {
-
-}
-
-export enum StepType {
     CreateFile,
     CreateFolder,
     EditFile,
@@ -23,7 +19,7 @@ export interface Step {
     title: string;
     description: string;
     type: StepType;
-    status: 'Pending' | 'In-progress' | 'Completed';
+    Status: 'Pending' | 'In-progress' | 'Completed';
     code?: string;
     path?: string
 }

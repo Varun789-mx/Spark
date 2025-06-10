@@ -4,15 +4,17 @@ import { useState } from 'react';
 import { CodeEditor } from './CodeEditor';
 
 
+interface Editorprop { 
+  Files:FileItem[];
+}
 
-export function Editor() {
-  const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
+export function Editor({Files}:Editorprop) {
   const [isPressed, setIsPressed] = useState(false)
-  
+
 
 
   const handleFileSelect = (file: FileItem) => {
-    setSelectedFile(file);
+    (file);
     console.log("Selected file:", file);
   };
 
@@ -28,12 +30,12 @@ export function Editor() {
       <div className='w-full flex justify-center bg-black rounded-lg border-2'>
         {" "}
         <div className='w-1/3'>
-          <FileExplorer files={[]} onFileSelect={handleFileSelect} />
+          <FileExplorer files={Files} onFileSelect={handleFileSelect} />
         </div>
         <div className='w-full'>
           {isPressed ?
-            <CodeEditor File={selectedFile} />
-            : <div className='h-[70vh]'>Empty</div>
+            <CodeEditor File={Files[0]} />
+            : <div className=''>Empty</div>
           }
         </div>
 

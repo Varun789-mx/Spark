@@ -2,7 +2,7 @@ import { Editor } from "@monaco-editor/react";
 import type{ FileItem } from "./types";
 
 interface CodeEditorprop {
-  File: FileItem | null,
+  File: FileItem ,
 }
 
 
