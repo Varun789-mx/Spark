@@ -33,7 +33,7 @@ export function Editor() {
         <div className='w-full'>
           {isPressed ?
             <CodeEditor File={selectedFile} />
-            : <div className='h-[70vh]'>Empty</div>
+            : <div className=''>Empty</div>
           }
         </div>
 
