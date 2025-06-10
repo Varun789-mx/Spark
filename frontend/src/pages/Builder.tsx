@@ -4,8 +4,8 @@ import { Background } from "../components/Background";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { Children, useEffect, useState } from "react";
-import { FileItem, StepType, type Step } from "../components/types";
+import { useEffect, useState } from "react";
+import type{ FileItem, StepType,  Step } from "../components/types";
 import { Parsexml } from "../Steps";
 import { Steplist } from "../components/Steps";
 import { Editor } from "../components/Editor";
@@ -17,10 +17,17 @@ export function Builder() {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [prompts, setPrompts] = useState<string>("");
     const [files,Setfiles] = useState<FileItem[] | null>(null);
-    const [Selectedfile,SetSelectedfile] = useState<FileItem | null>(null);
+    // const [Selectedfile,SetSelectedfile] = useState<FileItem | null>(null);
 
     const { prompt } = location.state as { prompt: string };
+    const { prompt } = location.state as { prompt: string };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.post(`${BACKEND_URL}/template`, {
+                    prompt: Stateprompt.trim(),
+                });
     useEffect(() => {
         const fetchData = async () => {
             try {

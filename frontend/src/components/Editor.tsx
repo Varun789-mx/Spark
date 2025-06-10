@@ -34,7 +34,11 @@ export function Editor({Files}:Editorprop) {
         </div>
         <div className='w-full'>
           {isPressed ?
+<<<<<<< HEAD
             <CodeEditor File={Files[0]} />
+=======
+            <CodeEditor File={selectedFile} />
+>>>>>>> 5a55a1f4b797ef46403db2aacce140cb3e5e87b3
             : <div className=''>Empty</div>
           }
         </div>
