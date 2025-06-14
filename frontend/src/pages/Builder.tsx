@@ -99,7 +99,13 @@ export function Builder() {
     console.log(files)
 
   }, [files, steps]);
-  
+
+
+  useEffect(()=> { 
+    
+
+
+  },[])
   return (
     <div className="relative min-h-screen">
       <span className="hidden">{prompts}</span>
