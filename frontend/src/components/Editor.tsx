@@ -31,6 +31,7 @@ export function Editor({ Files }: Editorprop) {
         {" "}
         <div className='w-1/3'>
           <FileExplorer files={Files} onFileSelect={handleFileSelect} />
+       console.log(Files);
         </div>
         <div className='w-full'>
           {isPressed ?

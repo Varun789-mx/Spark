@@ -130,6 +130,7 @@ export function Builder() {
           <Chatbox />
         </div>
         <div className="absolute top-16 right-0 w-3/5 p-2">
+        console.log(files);
           <Editor Files={files} />
         </div>
       </div>
