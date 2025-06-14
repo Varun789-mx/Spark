@@ -4,16 +4,16 @@ import { useState } from 'react';
 import { CodeEditor } from './CodeEditor';
 
 
-interface Editorprop { 
-  Files:FileItem[];
+interface Editorprop {
+  Files: FileItem[];
 }
 
-export function Editor({Files}:Editorprop) {
+export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(false)
 
 
 
-  const handleFileSelect = (file: FileItem) => {
+  const handleFileSelect = (file: FileItem[]) => {
     (file);
     console.log("Selected file:", file);
   };
@@ -34,11 +34,7 @@ export function Editor({Files}:Editorprop) {
         </div>
         <div className='w-full'>
           {isPressed ?
-<<<<<<< HEAD
             <CodeEditor File={Files[0]} />
-=======
-            <CodeEditor File={selectedFile} />
->>>>>>> 5a55a1f4b797ef46403db2aacce140cb3e5e87b3
             : <div className=''>Empty</div>
           }
         </div>

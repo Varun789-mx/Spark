@@ -101,11 +101,16 @@ export function Builder() {
   }, [files, steps]);
 
 
-  useEffect(()=> { 
-    
+  useEffect(() => {
+    const fetchFiles = async () => {
 
-
-  },[])
+      let response = await axios.put(`${BACKEND_URL}/chat`, {
+        prompt: prompt
+      });
+      console.log(response);
+    }
+    fetchFiles();
+  }, []);
   return (
     <div className="relative min-h-screen">
       <span className="hidden">{prompts}</span>

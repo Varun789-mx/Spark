@@ -2,7 +2,7 @@ import { Editor } from "@monaco-editor/react";
 import type{ FileItem } from "./types";
 
 interface CodeEditorprop {
-  File: FileItem ,
+  File: FileItem[] ,
 }
 
 
@@ -16,12 +16,16 @@ export function CodeEditor({File}:CodeEditorprop) {
     )
   }
     return (
+      <div>
+       {File.map((file)=> (
+
+      <div key={file.name}>
      <Editor
               height="70vh"
               theme="vs-dark"
               defaultLanguage="typescript"
               defaultValue="// some comment"
-              value={File?.content || ""}
+              value={file?.content || ""}
               options={{
                 readOnly: true,
                 minimap: { enabled: false },
@@ -30,5 +34,8 @@ export function CodeEditor({File}:CodeEditorprop) {
                 scrollBeyondLastLine: false,
               }}
             />
-    )
-}
+            </div>
+       ))}
+</div>
+    )     
+        }
