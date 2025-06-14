@@ -17,7 +17,7 @@ export function Builder() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [prompts, setPrompts] = useState<string>("");
   const [files, Setfiles] = useState<FileItem[]>([]);
-  // const [Selectedfile,SetSelectedfile] = useState<FileItem | null>(null);
+  const [Selectedfile,SetSelectedfile] = useState<FileItem | null>(null);
 
   const { prompt } = location.state as { prompt: string };
 
@@ -30,11 +30,12 @@ export function Builder() {
 
         const { promptsData, uiprompt } = response.data;
         setPrompts(promptsData);
-        const parsedSteps = Parsexml(uiprompt);
+        const parsedSteps = Parsexml(uiprompt);    
         setSteps(parsedSteps);
         if (parsedSteps.length > 0) {
           setCurrentStep(parsedSteps[0].id);
           setSteps(parsedSteps);
+          console.log(parsedSteps,"Parsed steps")
         }
       } catch (error) {
         console.error("Error loading steps:", error);
@@ -43,6 +44,7 @@ export function Builder() {
 
     fetchData();
   }, [prompt]);
+
   useEffect(() => {
     let originalFiles = [...files];
     let updatehappened = false;
@@ -87,6 +89,7 @@ export function Builder() {
       }
     })
     if (updatehappened) {
+      console.log(originalFiles);
       Setfiles(originalFiles)
       setSteps(steps => steps.map((s: Step) => {
         return {
@@ -96,24 +99,25 @@ export function Builder() {
       }))
 
     }
-    console.log(files)
-
   }, [files, steps]);
 
 
-  useEffect(() => {
-    const fetchFiles = async () => {
-
-      let response = await axios.put(`${BACKEND_URL}/chat`, {
-        prompt: prompt
-      });
-      console.log(response);
-    }
-    fetchFiles();
-  }, []);
+  // useEffect(() => {
+  //   const fetchFiles = async () => {
+  //  let GetResponse = await axios.post(`${BACKEND_URL}/chat`,{ 
+  //   prompt:prompts.trim()
+  //  })
+  //  const filedata = GetResponse.data;
+  //       const parsedfile = Parsexml(filedata.data);
+  //       console.log(filedata,"Parsed File");
+       
+  //  console.log(GetResponse);
+  //   }
+  //   fetchFiles();
+  // }, []);
   return (
     <div className="relative min-h-screen">
-      <span className="hidden">{prompts}</span>
+      <span className="">{prompts}</span>
       <div className="fixed inset-0 -z-10">
         <Background />
       </div>
@@ -130,7 +134,6 @@ export function Builder() {
           <Chatbox />
         </div>
         <div className="absolute top-16 right-0 w-3/5 p-2">
-        console.log(files);
           <Editor Files={files} />
         </div>
       </div>

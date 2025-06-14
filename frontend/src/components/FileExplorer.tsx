@@ -64,11 +64,6 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 }
 
 export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
-    // Debug logging
-    console.log('FileExplorer received files:', files);
-    console.log('files type:', typeof files);
-    console.log('files is array:', Array.isArray(files));
-
     // Safety check - ensure files is an array
     const safeFiles = Array.isArray(files) ? files : [];
 
