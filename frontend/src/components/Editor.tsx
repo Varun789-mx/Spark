@@ -13,7 +13,7 @@ export function Editor({ Files }: Editorprop) {
 
 
 
-  const handleFileSelect = (file: FileItem[]) => {
+  const handleFileSelect = (file: FileItem) => {
     (file);
     console.log("Selected file:", file);
   };
@@ -34,7 +34,7 @@ export function Editor({ Files }: Editorprop) {
         </div>
         <div className='w-full'>
           {isPressed ?
-            <CodeEditor File={Files[0]} />
+            <CodeEditor File={Files} />
             : <div className=''>Empty</div>
           }
         </div>
