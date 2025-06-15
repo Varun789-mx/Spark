@@ -17,32 +17,9 @@ export function Builder() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [prompts, setPrompts] = useState<string>("");
   const [files, Setfiles] = useState<FileItem[]>([]);
-  const [Selectedfile,SetSelectedfile] = useState<FileItem | null>(null);
+  const [Selectedfile, SetSelectedfile] = useState<FileItem | null>(null);
 
   const { prompt } = location.state as { prompt: string };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(`${BACKEND_URL}/template`, {
-          prompt: Stateprompt.trim(),
-        });
-
-        const { promptsData, uiprompt } = response.data;
-        setPrompts(promptsData);
-        const parsedSteps = Parsexml(uiprompt);    
-        setSteps(parsedSteps);
-        if (parsedSteps.length > 0) {
-          setCurrentStep(parsedSteps[0].id);
-          setSteps(parsedSteps);
-        }
-      } catch (error) {
-        console.error("Error loading steps:", error);
-      }
-    };
-
-    fetchData();
-  }, [prompt]);
 
   useEffect(() => {
     let originalFiles = [...files];
@@ -54,6 +31,8 @@ export function Builder() {
         let currentFileStructure = [...originalFiles];
         let finalAnswer = currentFileStructure;
         let currentFolder = '';
+        console.log(finalAnswer,"Final answer");
+
         while (parsedPath?.length) {
           currentFolder = `${currentFolder}/${parsedPath[0]}`;
           let currentFolderName = parsedPath[0];
@@ -100,20 +79,44 @@ export function Builder() {
     }
   }, [files, steps]);
 
-
   useEffect(() => {
-    const fetchFiles = async () => {
-   let GetResponse = await axios.post(`${BACKEND_URL}/chat`,{ 
-    prompt:prompts.trim()
-   })
-   const filedata = GetResponse.data;
-        const parsedfile = Parsexml(filedata.data);
-        if(parsedfile.length > 0)  {
-            Setfiles(parsedfile);
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`${BACKEND_URL}/template`, {
+          prompt: Stateprompt.trim(),
+        });
+
+        const { promptsData, uiprompt } = response.data;
+        setPrompts(promptsData);
+        const parsedSteps = Parsexml(uiprompt);
+        setSteps(parsedSteps);
+        if (parsedSteps.length > 0) {
+          setCurrentStep(parsedSteps[0].id);
+          setSteps(parsedSteps);
         }
-    }
-    fetchFiles();
-  }, []);
+      } catch (error) {
+        console.error("Error loading steps:", error);
+      }
+    };
+    fetchData();
+  }, [prompt]);
+
+
+
+
+  // useEffect(() => {
+  //   const fetchFiles = async () => {
+  //     let GetResponse = await axios.post(`${BACKEND_URL}/chat`, {
+  //       prompt: prompts.trim()
+  //     })
+  //     const filedata = GetResponse.data;
+  //     const parsedfile = Parsexml(filedata.data);
+  //     if (parsedfile.length > 0) {
+
+  //     }
+  //   }
+  //   fetchFiles();
+  // }, []);
   return (
     <div className="relative min-h-screen">
       <span className="">{prompts}</span>
