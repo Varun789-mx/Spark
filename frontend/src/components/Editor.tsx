@@ -10,6 +10,7 @@ interface Editorprop {
 
 export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(false)
+  console.log(Files);
 
 
 
@@ -17,7 +18,6 @@ export function Editor({ Files }: Editorprop) {
     (file);
     console.log("Selected file:", file);
   };
-
 
   return (
     <div className='bg-neutral-900 rounded-lg p-2 border-2 border-blue-900 h-[87vh]'>
