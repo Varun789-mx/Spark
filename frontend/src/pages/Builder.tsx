@@ -35,7 +35,6 @@ export function Builder() {
         if (parsedSteps.length > 0) {
           setCurrentStep(parsedSteps[0].id);
           setSteps(parsedSteps);
-          console.log(parsedSteps,"Parsed steps")
         }
       } catch (error) {
         console.error("Error loading steps:", error);
@@ -102,19 +101,19 @@ export function Builder() {
   }, [files, steps]);
 
 
-  // useEffect(() => {
-  //   const fetchFiles = async () => {
-  //  let GetResponse = await axios.post(`${BACKEND_URL}/chat`,{ 
-  //   prompt:prompts.trim()
-  //  })
-  //  const filedata = GetResponse.data;
-  //       const parsedfile = Parsexml(filedata.data);
-  //       console.log(filedata,"Parsed File");
-       
-  //  console.log(GetResponse);
-  //   }
-  //   fetchFiles();
-  // }, []);
+  useEffect(() => {
+    const fetchFiles = async () => {
+   let GetResponse = await axios.post(`${BACKEND_URL}/chat`,{ 
+    prompt:prompts.trim()
+   })
+   const filedata = GetResponse.data;
+        const parsedfile = Parsexml(filedata.data);
+        if(parsedfile.length > 0)  {
+            Setfiles(parsedfile);
+        }
+    }
+    fetchFiles();
+  }, []);
   return (
     <div className="relative min-h-screen">
       <span className="">{prompts}</span>
