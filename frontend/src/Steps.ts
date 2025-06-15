@@ -20,7 +20,7 @@ export function Parsexml(response: string): Step[] {
         title: artifactTitle,
         description: "",
         type: StepType.CreateFolder,
-        status: "Pending"
+        Status: "Pending"
     })
 
     const actionRegex = /<boltAction\s+type="([^"]*)"(?:\s+filePath="([^"]*)")?>([\s\S]*?)<\/boltAction>/g;
@@ -33,7 +33,7 @@ export function Parsexml(response: string): Step[] {
                 title: `Create ${filePath || 'file'}`,
                 description: "",
                 type: StepType.CreateFile,
-                status: "Pending",
+                Status: "Pending",
                 code: content.trim(),
                 path: filePath,
             });
@@ -44,7 +44,7 @@ export function Parsexml(response: string): Step[] {
                 title: "Run command",
                 description: "",
                 type: StepType.RunScript,
-                status: "Pending",
+                Status: "Pending",
                 code: content.trim(),
             })
         }

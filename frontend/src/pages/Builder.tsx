@@ -21,7 +21,33 @@ export function Builder() {
 
   const { prompt } = location.state as { prompt: string };
 
+ 
+
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`${BACKEND_URL}/template`, {
+          prompt: Stateprompt.trim(),
+        });
+
+        const { promptsData, uiprompt } = response.data;
+        setPrompts(promptsData);
+        const parsedSteps = Parsexml(uiprompt);
+        setSteps(parsedSteps);
+        if (parsedSteps.length > 0) {
+          setCurrentStep(parsedSteps[0].id);
+          setSteps(parsedSteps);
+        }
+       
+        Setfiles(files);
+         
+      } catch (error) {
+        console.error("Error loading steps:", error);
+      }
+    };   
+    fetchData();
+  }, [prompt]);
+   useEffect(() => {
     let originalFiles = [...files];
     let updatehappened = false;
     steps.filter(({ Status }) => Status === 'Pending').map(step => {
@@ -78,44 +104,6 @@ export function Builder() {
 
     }
   }, [files, steps]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(`${BACKEND_URL}/template`, {
-          prompt: Stateprompt.trim(),
-        });
-
-        const { promptsData, uiprompt } = response.data;
-        setPrompts(promptsData);
-        const parsedSteps = Parsexml(uiprompt);
-        setSteps(parsedSteps);
-        if (parsedSteps.length > 0) {
-          setCurrentStep(parsedSteps[0].id);
-          setSteps(parsedSteps);
-        }
-      } catch (error) {
-        console.error("Error loading steps:", error);
-      }
-    };
-    fetchData();
-  }, [prompt]);
-  setSteps(Parsexml(uiprompt[0]).map((x: Step) => ({
-    ...x,
-    status: "pending"
-  })));
-  useEffect(() => {
-    const fetchFiles = async () => {
-      let GetResponse = await axios.post(`${BACKEND_URL}/chat`, {
-        prompt: prompts.trim()
-      })
-      const filedata = GetResponse.data;
-      const parsedfile = Parsexml(filedata.data);
-      if (parsedfile.length > 0) {
-      }
-    }
-    fetchFiles();
-  }, []);
   return (
     <div className="relative min-h-screen">
       <span className="">{prompts}</span>
