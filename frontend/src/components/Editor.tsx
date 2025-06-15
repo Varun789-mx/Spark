@@ -10,7 +10,6 @@ interface Editorprop {
 
 export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(false)
-  console.log(Files);
 
 
 
@@ -35,7 +34,7 @@ export function Editor({ Files }: Editorprop) {
         </div>
         <div className='w-full'>
           {isPressed ?
-            <CodeEditor File={Files} />
+            <CodeEditor File={Files[0]} />
             : <div className=''>Empty</div>
           }
         </div>

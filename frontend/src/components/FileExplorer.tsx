@@ -26,9 +26,9 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 
     return (
         <div className="select-none">
-            <div 
+            <div
                 className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer"
-                style={{ paddingLeft: `${depth * 1.5}rem` }} 
+                style={{ paddingLeft: `${depth * 1.5}rem` }}
                 onClick={handleClick}
             >
                 {item.type === 'Folder' && (
@@ -50,11 +50,11 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
             {item.type === 'Folder' && isExpanded && item.children && (
                 <div>
                     {item.children.map((child, index) => (
-                        <FileNode 
+                        <FileNode
                             key={`${child.path}-${index}`}
                             item={child}
                             depth={depth + 1}
-                            onFileClick={onFileClick} 
+                            onFileClick={onFileClick}
                         />
                     ))}
                 </div>
@@ -63,9 +63,27 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
     );
 }
 
+function sortFiles(files: FileItem[]): FileItem[] {
+    return [...files].sort((a, b) => {
+        // First, prioritize 'src' folder at the top
+        if (a.name === 'src' && a.type === 'Folder') return -1;
+        if (b.name === 'src' && b.type === 'Folder') return 1;
+        
+        // Then, sort folders before files
+        if (a.type === 'Folder' && b.type !== 'Folder') return -1;
+        if (b.type === 'Folder' && a.type !== 'Folder') return 1;
+        
+        // Finally, sort alphabetically within the same type
+        return a.name.localeCompare(b.name);
+    });
+}
+
 export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
     // Safety check - ensure files is an array
     const safeFiles = Array.isArray(files) ? files : [];
+    
+    // Sort files with src folder at top
+    const sortedFiles = sortFiles(safeFiles);
 
     return (
         <div className="bg-gray-900 rounded-lg shadow-lg p-4 h-full overflow-auto">
@@ -74,11 +92,11 @@ export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
                 File Explorer
             </h2>
             <div className="space-y-1">
-                {safeFiles.length === 0 ? (
+                {sortedFiles.length === 0 ? (
                     <div className="text-gray-400 text-sm">No files to display</div>
                 ) : (
-                    safeFiles.map((file, index) => (
-                        <FileNode 
+                    sortedFiles.map((file, index) => (
+                        <FileNode
                             key={`${file.path}-${index}`}
                             item={file}
                             depth={0}
