@@ -9,7 +9,6 @@ import { type FileItem, StepType, type Step } from "../components/types";
 import { Parsexml } from "../Steps";
 import { Steplist } from "../components/Steps";
 import { Editor } from "../components/Editor";
-import { WebContainer } from "@webcontainer/api";
 
 export function Builder() {
   const location = useLocation();
@@ -32,7 +31,7 @@ export function Builder() {
         let currentFileStructure = [...originalFiles];
         let finalAnswer = currentFileStructure;
         let currentFolder = '';
-        console.log(finalAnswer,"Final answer");
+        console.log(finalAnswer, "Final answer");
 
         while (parsedPath?.length) {
           currentFolder = `${currentFolder}/${parsedPath[0]}`;
@@ -101,85 +100,22 @@ export function Builder() {
     };
     fetchData();
   }, [prompt]);
-
-
- useEffect(() => {
-    const createMountStructure = (files: FileItem[]): Record<string, any> => {
-      const mountStructure: Record<string, any> = {};
-  
-      const processFile = (file: FileItem, isRootFolder: boolean) => {  
-        if (file.type === 'Folder') {
-          // For folders, create a directory entry
-          mountStructure[file.name] = {
-            directory: file.children ? 
-              Object.fromEntries(
-                file.children.map(child => [child.name, processFile(child, false)])
-              ) 
-              : {}
-          };
-        } else if (file.type === 'File') {
-          if (isRootFolder) {
-            mountStructure[file.name] = {
-              file: {
-                contents: file.content || ''
-              }
-            };
-          } else {
-            // For files, create a file entry with contents
-            return {
-              file: {
-                contents: file.content || ''
-              }
-            };
-          }
-        }
-  
-        return mountStructure[file.name];
-      };
-  
-      // Process each top-level file/folder
-      files.forEach(file => processFile(file, true));
-  
-      return mountStructure;
-    };
-  
-    const mountStructure = createMountStructure(files);
-  
-    // Mount the structure if WebContainer is available
-    console.log(mountStructure);
-    WebContainer.mount(mountStructure);
-  }, [files, WebContainer]);
-
-  async function init() {
-    const response = await axios.post(`${BACKEND_URL}/template`, {
-      prompt: prompt.trim()
-    });
-    setTemplateSet(true);
-    
-    const {prompts, uiPrompts} = response.data;
-
-    setSteps(parseXml(uiPrompts[0]).map((x: Step) => ({
-      ...x,
-      status: "pending"
-    })));
-    
+  setSteps(Parsexml(uiprompt[0]).map((x: Step) => ({
+    ...x,
+    status: "pending"
+  })));
   useEffect(() => {
-    init();
-  }, [])
-
-  // useEffect(() => {
-  //   const fetchFiles = async () => {
-  //     let GetResponse = await axios.post(`${BACKEND_URL}/chat`, {
-  //       prompt: prompts.trim()
-  //     })
-  //     const filedata = GetResponse.data;
-  //     const parsedfile = Parsexml(filedata.data);
-  //     if (parsedfile.length > 0) {
-
-  //     }
-  //   }
-  //   fetchFiles();
-  // }, []);
+    const fetchFiles = async () => {
+      let GetResponse = await axios.post(`${BACKEND_URL}/chat`, {
+        prompt: prompts.trim()
+      })
+      const filedata = GetResponse.data;
+      const parsedfile = Parsexml(filedata.data);
+      if (parsedfile.length > 0) {
+      }
+    }
+    fetchFiles();
+  }, []);
   return (
     <div className="relative min-h-screen">
       <span className="">{prompts}</span>
