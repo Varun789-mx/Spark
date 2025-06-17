@@ -21,9 +21,9 @@ export function Steplist({ step, currentstep, onStepClick }: SteplistProp) {
                                 : "bg-slate-950"
                                 }`}>
                             <div className="flex items-center p-4 gap-4 ">
-                                {step.status === "Completed" ? (
+                                {step.Status === "Completed" ? (
                                     <CheckCircle className="text-yellow-500 bg-slate-950" />
-                                ) : step.status === "In-progress" ? (
+                                ) : step.Status === "In-progress" ? (
                                     <Clock className="text-white bg-slate-950" />
                                 ) : (
                                     <Circle className="bg-slate-950 text-white" />

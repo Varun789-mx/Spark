@@ -26,8 +26,8 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 
     return (
         <div className="select-none">
-            <div
-                className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer"
+            <div 
+                className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer max-h-60 overflow-y-auto "
                 style={{ paddingLeft: `${depth * 1.5}rem` }}
                 onClick={handleClick}
             >
