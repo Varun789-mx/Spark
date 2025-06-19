@@ -8,7 +8,7 @@ interface FileExplorerProps {
 }
 
 interface FileNodeProps {
-    item: FileItem;
+    item: FileItem ;
     depth: number;
     onFileClick: (file: FileItem) => void;
 }
@@ -31,6 +31,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
                 style={{ paddingLeft: `${depth * 1.5}rem` }}
                 onClick={handleClick}
             >
+                
                 {item.type === 'Folder' && (
                     <span className="text-gray-400">
                         {isExpanded ? (

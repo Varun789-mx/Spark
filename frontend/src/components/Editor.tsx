@@ -10,11 +10,11 @@ interface Editorprop {
 
 export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(false)
-
+const [filedata,SetFiledate] = useState<FileItem | null>(null);
 
 
   const handleFileSelect = (file: FileItem) => {
-    (file);
+    SetFiledate(file);
     console.log("Selected file:", file);
   };
 
@@ -34,7 +34,7 @@ export function Editor({ Files }: Editorprop) {
         </div>
         <div className='w-full'>
           {isPressed ?
-            <CodeEditor File={Files[0]} />
+            <CodeEditor File={filedata} />
             : <div className=''>Empty</div>
           }
         </div>
