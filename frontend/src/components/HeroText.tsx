@@ -1,3 +1,4 @@
+
 import { InputBox } from "./Inputbox"
 
 export const HeroText = () => {

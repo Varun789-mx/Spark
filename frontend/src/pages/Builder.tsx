@@ -21,7 +21,7 @@ export function Builder() {
 
   const { prompt } = location.state as { prompt: string };
 
- 
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,16 +38,16 @@ export function Builder() {
           setCurrentStep(parsedSteps[0].id);
           setSteps(parsedSteps);
         }
-       
+
         Setfiles(files);
-         
+
       } catch (error) {
         console.error("Error loading steps:", error);
       }
-    };   
+    };
     fetchData();
   }, [prompt]);
-   useEffect(() => {
+  useEffect(() => {
     let originalFiles = [...files];
     let updatehappened = false;
     steps.filter(({ Status }) => Status === 'Pending').map(step => {
