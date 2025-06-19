@@ -1,5 +1,6 @@
 import { CheckCircle, Clock, Circle } from "lucide-react";
 import type { Step } from "./types"
+import { Loader } from "./Loader";
 
 interface SteplistProp {
     step: Step[];
@@ -12,7 +13,8 @@ export function Steplist({ step, currentstep, onStepClick }: SteplistProp) {
             <div className="bg-slate-950 pt-5 rounded-2xl">
                 <h1 className="text-white text-center font-bold text-2xl">Steps in Process</h1>
                 <div className="overflow-y-auto flex-1 p-2 max-h-95 scrollbar-hide">
-                    {step.map((step) => (
+                    {step.length === 0 ? (<div className="flex justify-center"><Loader/></div>) :
+                  (  step.map((step) => (
                         <div
                             onClick={() => onStepClick(step.id)}
                             key={step.id}
@@ -31,7 +33,9 @@ export function Steplist({ step, currentstep, onStepClick }: SteplistProp) {
                                 <h3 className="text-white">{step.title}</h3>
                             </div>
                         </div>
-                    ))}
+                    ))
+                )
+                }
                 </div>
             </div>
         </div>
