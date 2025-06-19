@@ -25,13 +25,12 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
     };
 
     return (
-        <div className="select-none">
+        <div className="select-none max-w-60 overflow-y-auto scroll-auto">
             <div 
-                className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer max-h-60 overflow-y-auto "
+                className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer"
                 style={{ paddingLeft: `${depth * 1.5}rem` }}
                 onClick={handleClick}
             >
-                
                 {item.type === 'Folder' && (
                     <span className="text-gray-400">
                         {isExpanded ? (
@@ -87,12 +86,12 @@ export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
     const sortedFiles = sortFiles(safeFiles);
 
     return (
-        <div className="bg-gray-900 rounded-lg shadow-lg p-4 h-full overflow-auto">
+        <div className="bg-gray-900 rounded-lg shadow-lg p-4 h-full">
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-100">
                 <FolderTree className="w-5 h-5" />
                 File Explorer
             </h2>
-            <div className="space-y-1">
+            <div className="space-y-1 max-h-95 overflow-y-auto scrollbar-hide">
                 {sortedFiles.length === 0 ? (
                     <div className="text-gray-400 text-sm">No files to display</div>
                 ) : (
