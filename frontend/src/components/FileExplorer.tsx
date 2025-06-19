@@ -91,7 +91,7 @@ export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
                 <FolderTree className="w-5 h-5" />
                 File Explorer
             </h2>
-            <div className="space-y-1 max-h-95 overflow-y-auto scrollbar-hide">
+            <div className="space-y-1  max-h-120 overflow-y-auto scrollbar-hide">
                 {sortedFiles.length === 0 ? (
                     <div className="text-gray-400 text-sm">No files to display</div>
                 ) : (

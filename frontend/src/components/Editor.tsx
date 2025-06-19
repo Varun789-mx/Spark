@@ -2,6 +2,7 @@ import { FileExplorer } from './FileExplorer';
 import type { FileItem } from './types';
 import { useState } from 'react';
 import { CodeEditor } from './CodeEditor';
+import { Skeleton } from './ui/skeleton';
 
 
 interface Editorprop {
@@ -9,7 +10,7 @@ interface Editorprop {
 }
 
 export function Editor({ Files }: Editorprop) {
-  const [isPressed, setIsPressed] = useState(false)
+  const [isPressed, setIsPressed] = useState(true)
   const [filedata, SetFiledate] = useState<FileItem | null>(null);
 
 
@@ -26,22 +27,22 @@ export function Editor({ Files }: Editorprop) {
           <button onClick={() => setIsPressed(!isPressed)} className={` font-semibold w-15 rounded-lg p-1 text-sm  ${!isPressed ? "bg-black text-white" : "text-gray-500"}`}>Preview</button>
         </div>
       </div>
-      <div className='w-full flex justify-center bg-black rounded-lg border-2'>
+      <div className='w-full flex justify-center rounded-lg border-2'>
         {" "}
-        <div className='w-1/3'>
+        <div className='w-1/3 '>
           <FileExplorer files={Files} onFileSelect={handleFileSelect} />
-          console.log(Files);
+
         </div>
         <div className='w-full'>
           {isPressed ?
             <CodeEditor File={filedata} />
-            : <div className=''>Empty</div>
+            : <div className='h-[70vh] w-full p-4'>
+  <div className="h-full w-full bg-gray-700 animate-pulse rounded-md"></div>
+</div>
           }
         </div>
 
       </div>
     </div>
-  );
-}
-
+  );}
 export default CodeEditor;

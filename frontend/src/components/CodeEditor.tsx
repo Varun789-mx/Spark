@@ -1,5 +1,7 @@
 import { Editor } from "@monaco-editor/react";
 import type { FileItem } from "./types";
+import { Skeleton } from "./ui/skeleton";
+
 
 interface CodeEditorprop {
   File: FileItem | null,
@@ -11,12 +13,12 @@ export function CodeEditor({ File }: CodeEditorprop) {
   if (!File) {
     return (
       <div className='h-full flex items-center justify-center text-gray-400'>
-        Please Select a file to view its content
+  <Skeleton/>
       </div>
     )
   }
   return (
-    <div>
+    <div className="bg-neutral-900">
           <Editor
             height="70vh"
             theme="vs-dark"
@@ -31,6 +33,7 @@ export function CodeEditor({ File }: CodeEditorprop) {
               scrollBeyondLastLine: false,
             }}
           />
+         
         </div>
   )
 }
