@@ -12,7 +12,7 @@ interface Editorprop {
 export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(true)
   const [filedata, SetFiledate] = useState<FileItem | null>(null);
-const WebContainer = useWebContainer();
+
 
   const handleFileSelect = (file: FileItem) => {
     SetFiledate(file);

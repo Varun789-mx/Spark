@@ -10,7 +10,6 @@ import { Parsexml } from "../Steps";
 import { Steplist } from "../components/Steps";
 import { Editor } from "../components/Editor";
 import { useWebContainer } from "../hooks/useWebContainer";
-import type { FileNode } from "@webcontainer/api";
 
 export function Builder() {
   const location = useLocation();
@@ -19,7 +18,6 @@ export function Builder() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [prompts, setPrompts] = useState<string>("");
   const [files, Setfiles] = useState<FileItem[]>([]);
-  const [Selectedfile, SetSelectedfile] = useState<FileItem | null>(null);
   const WebContainer = useWebContainer();
 
   const { prompt } = location.state as { prompt: string };
@@ -29,7 +27,7 @@ export function Builder() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`${BACKEND_URL}/chat`, {
+        const response = await axios.post(`${BACKEND_URL}/template`, {
           prompt: Stateprompt.trim(),
         });
 
@@ -60,9 +58,6 @@ export function Builder() {
         let currentFileStructure = [...originalFiles];
         let finalAnswer = currentFileStructure;
         let currentFolder = '';
-
-
-
         while (parsedPath?.length) {
           currentFolder = `${currentFolder}/${parsedPath[0]}`;
           let currentFolderName = parsedPath[0];
@@ -80,13 +75,6 @@ export function Builder() {
               file.content = step.code
 
             }
-           WebContainer?.mount({
-              [currentFolder]: {
-                file: {
-                  contents: step.code
-                }
-              } as FileNode
-            })
           }
           else {
             let folder = currentFileStructure.find(x => x.path === currentFolder);
@@ -113,9 +101,42 @@ export function Builder() {
           Status: 'Completed'
         }
       }))
-
     }
   }, [files, steps]);
+
+  useEffect(() => {
+    const createMountStructure = (file: FileItem[]) => {
+      const MountStructure: Record<string, any> = {};
+      const processFile = (file: FileItem, isRootFolder: boolean) => {
+        if (file.type === 'Folder') {
+          MountStructure[file.name] = {
+            directory: file.children ?
+              Object.fromEntries(
+                file.children.map(child => [child.name, processFile(child, false)])
+              ) : {}
+          }
+        }
+        else if (file.type === 'File') {
+          if(isRootFolder) { MountStructure[file.name] = {
+            file: {
+              contents: file.content || ''
+            }
+        }
+      }
+       } else {
+          return {
+            file: {
+              contents: file.content || ''
+            }
+          }
+        }
+        return MountStructure[file.name];
+      };
+      file.forEach(file => processFile(file, true));
+      console.log(MountStructure);
+      WebContainer?.mount(MountStructure);
+    };
+  }, [files, WebContainer])
   return (
     <div className="relative min-h-screen">
       <span className="">{prompts}</span>
