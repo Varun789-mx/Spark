@@ -2,7 +2,7 @@ import { FileExplorer } from './FileExplorer';
 import type { FileItem } from './types';
 import { useState } from 'react';
 import { CodeEditor } from './CodeEditor';
-import { Skeleton } from './ui/skeleton';
+import { useWebContainer } from '../hooks/useWebContainer';
 
 
 interface Editorprop {
@@ -12,7 +12,7 @@ interface Editorprop {
 export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(true)
   const [filedata, SetFiledate] = useState<FileItem | null>(null);
-
+const WebContainer = useWebContainer();
 
   const handleFileSelect = (file: FileItem) => {
     SetFiledate(file);

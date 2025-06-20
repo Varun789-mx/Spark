@@ -9,6 +9,8 @@ import { type FileItem, StepType, type Step } from "../components/types";
 import { Parsexml } from "../Steps";
 import { Steplist } from "../components/Steps";
 import { Editor } from "../components/Editor";
+import { useWebContainer } from "../hooks/useWebContainer";
+import type { FileNode } from "@webcontainer/api";
 
 export function Builder() {
   const location = useLocation();
@@ -18,6 +20,7 @@ export function Builder() {
   const [prompts, setPrompts] = useState<string>("");
   const [files, Setfiles] = useState<FileItem[]>([]);
   const [Selectedfile, SetSelectedfile] = useState<FileItem | null>(null);
+  const WebContainer = useWebContainer();
 
   const { prompt } = location.state as { prompt: string };
 
@@ -57,7 +60,8 @@ export function Builder() {
         let currentFileStructure = [...originalFiles];
         let finalAnswer = currentFileStructure;
         let currentFolder = '';
-       
+
+
 
         while (parsedPath?.length) {
           currentFolder = `${currentFolder}/${parsedPath[0]}`;
@@ -74,7 +78,15 @@ export function Builder() {
               })
             } else {
               file.content = step.code
+
             }
+           WebContainer?.mount({
+              [currentFolder]: {
+                file: {
+                  contents: step.code
+                }
+              } as FileNode
+            })
           }
           else {
             let folder = currentFileStructure.find(x => x.path === currentFolder);
