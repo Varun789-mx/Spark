@@ -26,7 +26,7 @@ export function Builder() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`${BACKEND_URL}/template`, {
+        const response = await axios.post(`${BACKEND_URL}/chat`, {
           prompt: Stateprompt.trim(),
         });
 
