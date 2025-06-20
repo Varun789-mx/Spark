@@ -4,7 +4,7 @@
   export const HeroText = () => {
     return (
       <>
-        <div className="flex w-2/3 flex-col pt-4 justify-center items-center">
+        <div className="flex w-1/2 flex-col pt-4 justify-center items-center">
         
           <div className=" flex flex-col items-center text-center">
               <span className=" w-full text-violet-500 font-bold text-6xl ">
