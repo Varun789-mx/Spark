@@ -2,7 +2,9 @@ import { FileExplorer } from './FileExplorer';
 import type { FileItem } from './types';
 import { useState } from 'react';
 import { CodeEditor } from './CodeEditor';
+import { PreviewScreen } from './PreviewScreen';
 import { useWebContainer } from '../hooks/useWebContainer';
+
 
 
 interface Editorprop {
@@ -12,6 +14,7 @@ interface Editorprop {
 export function Editor({ Files }: Editorprop) {
   const [isPressed, setIsPressed] = useState(true)
   const [filedata, SetFiledate] = useState<FileItem | null>(null);
+  const webcontainer = useWebContainer();
 
 
   const handleFileSelect = (file: FileItem) => {
@@ -36,13 +39,13 @@ export function Editor({ Files }: Editorprop) {
         <div className='w-full'>
           {isPressed ?
             <CodeEditor File={filedata} />
-            : <div className='h-[70vh] w-full p-4'>
-  <div className="h-full w-full bg-gray-700 animate-pulse rounded-md"></div>
-</div>
+            : webcontainer ? (<PreviewScreen file={filedata} WebContainer={webcontainer} />) : <div>
+              Loading....</div>
           }
         </div>
 
       </div>
     </div>
-  );}
+  );
+}
 export default CodeEditor;
