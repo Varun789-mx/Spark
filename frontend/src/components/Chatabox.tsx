@@ -25,10 +25,10 @@ export const Chatbox = () => {
         if (e.key === 'Enter') {
             e.preventDefault();
             console.log(loading, "From loading ")
-
-            handleSubmit();
+            if (!loading) {
+                handleSubmit();
+            }
         }
-
     }
     return (
         <div className="w-full max-w-7xl mx-auto p-2">
@@ -36,10 +36,10 @@ export const Chatbox = () => {
             <div className="relative">
                 <form className="space-y-4" >
                     <textarea value={chat} onChange={(e) => SetChat(e.target.value)} onKeyDown={HandleRequest} disabled={loading} maxLength={500}
-                        className="w-md h-30 bg-[#0d1117] 
-                    text-white p-4 rounded-lg border 
+                        className={`w-md h-30 bg-[#0d1117] ${loading? "text-gray-500":
+                   " text-white"} p-4 rounded-lg border 
                     border-[#3D3D3D] focus:outline-none 
-                    focus:ring-2 focus:ring-blue-500 resize-none"
+                    focus:ring-2 focus:ring-blue-500 resize-none`}
                         placeholder="Create an elegant portfolio website" />
                 </form>
             </div>
