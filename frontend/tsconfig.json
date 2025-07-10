@@ -2,12 +2,21 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lib/*":["src/lib/*"]
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }
