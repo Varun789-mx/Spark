@@ -10,7 +10,7 @@ const CodeShowcase = () => {
               <span className="text-gradient">Code that Writes Itself</span>
             </h2>
 
-            <p className="text-lg text-blue-500 ">{" "}
+            <p className="text-lg text-blue-500 w-3/4 text-nowrap">{" "}
               Simply describe what you want, and watch as DevForge AI generates
               high-quality code in real-time.
             </p>

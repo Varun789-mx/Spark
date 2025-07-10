@@ -18,7 +18,7 @@ export const Navbar = () => {
             </div>
             <div className="hidden md:flex text-white justify-between pr-9 cursor-pointer pt-2">
                 <div className="text-base px-2 pt-2 ">
-                    <span className="p-4 hover:text-blue-498">Login</span>
+                    <span className="p-4 hover:text-blue-500 ">Login</span>
                 </div>
                 <div>
                     <div className="rounded-lg pt-2 bg-blue-500 pb-2 w-full hover:bg-blue-600">

@@ -58,6 +58,8 @@ export function Builder() {
         let currentFileStructure = [...originalFiles];
         let finalAnswer = currentFileStructure;
         let currentFolder = '';
+
+        
         while (parsedPath?.length) {
           currentFolder = `${currentFolder}/${parsedPath[0]}`;
           let currentFolderName = parsedPath[0];

@@ -1,5 +1,6 @@
 import { Background } from "../components/Background"
 import CodeShowcase from "../components/CodeShowCase"
+import {  FooterArea } from "../components/Footer"
 import { HeroText } from "../components/HeroText"
 import { Navbar } from "../components/Navbar"
 
@@ -20,6 +21,7 @@ export const Home = () => {
           <CodeShowcase />
         </div>
       </div>
+      <FooterArea/>
 
     </>
   )
