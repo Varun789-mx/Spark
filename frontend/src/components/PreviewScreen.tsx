@@ -6,7 +6,7 @@ interface PreviewScreenprops {
     WebContainer:WebContainer;
 }
 
-export const PreviewScreen = ({file,WebContainer}:PreviewScreenprops)=> { 
+export const PreviewScreen = ({WebContainer}:PreviewScreenprops)=> { 
     const [url,seturl] = useState("");
     async function main() {
         const installProcess = await WebContainer.spawn('npm',['install']);
