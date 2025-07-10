@@ -9,7 +9,7 @@ import { type FileItem, StepType, type Step } from "../components/types";
 import { Parsexml } from "../Steps";
 import { Steplist } from "../components/Steps";
 import { Editor } from "../components/Editor";
-import { useWebContainer } from "../hooks/useWebContainer";
+// import { useWebContainer } from "../hooks/useWebContainer";
 
 export function Builder() {
   const location = useLocation();
@@ -18,7 +18,7 @@ export function Builder() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [prompts, setPrompts] = useState<string>("");
   const [files, Setfiles] = useState<FileItem[]>([]);
-  const WebContainer = useWebContainer();
+  // const WebContainer = useWebContainer();
 
   const { prompt } = location.state as { prompt: string };
 
@@ -106,39 +106,39 @@ export function Builder() {
     }
   }, [files, steps]);
 
-  useEffect(() => {
-    const createMountStructure = (file: FileItem[]) => {
-      const MountStructure: Record<string, any> = {};
-      const processFile = (file: FileItem, isRootFolder: boolean) => {
-        if (file.type === 'Folder') {
-          MountStructure[file.name] = {
-            directory: file.children ?
-              Object.fromEntries(
-                file.children.map(child => [child.name, processFile(child, false)])
-              ) : {}
-          }
-        }
-        else if (file.type === 'File') {
-          if(isRootFolder) { MountStructure[file.name] = {
-            file: {
-              contents: file.content || ''
-            }
-        }
-      }
-       } else {
-          return {
-            file: {
-              contents: file.content || ''
-            }
-          }
-        }
-        return MountStructure[file.name];
-      };
-      file.forEach(file => processFile(file, true));
-      console.log(MountStructure);
-      WebContainer?.mount(MountStructure);
-    };
-  }, [files, WebContainer])
+  // useEffect(() => {
+  //   const createMountStructure = (file: FileItem[]) => {
+  //     const MountStructure: Record<string, any> = {};
+  //     const processFile = (file: FileItem, isRootFolder: boolean) => {
+  //       if (file.type === 'Folder') {
+  //         MountStructure[file.name] = {
+  //           directory: file.children ?
+  //             Object.fromEntries(
+  //               file.children.map(child => [child.name, processFile(child, false)])
+  //             ) : {}
+  //         }
+  //       }
+  //       else if (file.type === 'File') {
+  //         if(isRootFolder) { MountStructure[file.name] = {
+  //           file: {
+  //             contents: file.content || ''
+  //           }
+  //       }
+  //     }
+  //      } else {
+  //         return {
+  //           file: {
+  //             contents: file.content || ''
+  //           }
+  //         }
+  //       }
+  //       return MountStructure[file.name];
+  //     };
+  //     file.forEach(file => processFile(file, true));
+  //     console.log(MountStructure);
+  //     WebContainer?.mount(MountStructure);
+  //   };
+  // }, [files, WebContainer])
   return (
     <div className="relative min-h-screen">
       <span className="">{prompts}</span>
